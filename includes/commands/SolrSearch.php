@@ -6,6 +6,11 @@ use Acquia\Search\AcquiaSearchService;
 use Acquia\Network\AcquiaNetworkClient;
 use Acquia\Common\Services;
 
+/**
+ * Runs a simple ->select() against a search index.
+ *
+ * Example `./run SolrSearch subscription "Here is my search query"`
+ */
 class SolrSearch
 {
   protected $_search;
@@ -34,8 +39,8 @@ class SolrSearch
     $config = \AcquiaUtil\Base\Config::instance($argv[0]);
 
     $network = AcquiaNetworkClient::factory(array(
-        'network_id' => $config->get('network-identifier'),  // Acquia Network identifier
-        'network_key' => $config->get('network-key'),  // Acquia Network key
+        'network_id' => $config->get('network-identifier'),
+        'network_key' => $config->get('network-key'),
     ));
 
     $acquiaServices = Services::ACQUIA_SEARCH;

@@ -2,6 +2,7 @@
 
 namespace AcquiaUtil\Base;
 
+// TODO: This can probably be used with Guzzle for betterness.
 class Config
 {
   protected $config_dir;

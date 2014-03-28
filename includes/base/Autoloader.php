@@ -2,6 +2,9 @@
 
 namespace AcquiaUtil\Base;
 
+/**
+ * Autoloader. Only responds to the AcquiaUtil namespace.
+ */
 class Autoloader
 {
   public static function autoload($class)
