@@ -7,17 +7,26 @@ include dirname(__FILE__) . '/includes/base/Autoloader.php';
 
 \AcquiaUtil\Base\Autoloader::register();
 
-$command = $argv[1];
+$command = explode('::', $argv[1]);
+
+if (empty($command[1])) {
+  $command[1] = 'run';
+}
 
 $params = array_slice($argv, 2);
 
-$class = '\AcquiaUtil\Commands\\' . $command;
+$class = '\AcquiaUtil\Commands\\' . $command[0];
 
 if (!class_exists($class)) {
   var_dump("Sorry, that command does not exist.");
 }
 
-// TODO: Allow for sub-commands.
-$result = call_user_func($class . '::factory', $params);
+$class = call_user_func($class . '::factory', $params);
 
-var_dump($result);
+// TODO: Nicely formatted output? (Composer package?)
+try {
+  $result = $class->{$command[1]}();
+  var_dump($result);
+} catch (\Exception $e) {
+  var_dump($e->getMessage());
+}

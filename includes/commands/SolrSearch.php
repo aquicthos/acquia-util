@@ -11,32 +11,23 @@ use Acquia\Common\Services;
  *
  * Example `./run SolrSearch subscription "Here is my search query"`
  */
-class SolrSearch
+class SolrSearch extends \AcquiaUtil\Base\Command
 {
   protected $_search;
 
   protected $_index;
 
-  public function __construct($credentials, $index)
+  /**
+   * Overloaded constructor to setup commands
+   *
+   * @param array $argv
+   *   Command Params Passed into the function.
+   * @returns null
+   */
+  public function __construct($argv)
   {
-    $this->_search = AcquiaSearchService::factory($credentials);
-
-    $this->_index = $this->_search->get($index);
-  }
-
-  public function __call($function, $args)
-  {
-    var_dump("subcommand does not exist.");
-  }
-
-  public function select($keywords)
-  {
-    return $this->_index->select($keywords);
-  }
-
-  public static function factory($argv)
-  {
-    $config = \AcquiaUtil\Base\Config::instance($argv[0]);
+    parent::__construct($argv);
+    $config = \AcquiaUtil\Base\Config::instance($this->_argv[0]);
 
     $network = AcquiaNetworkClient::factory(array(
         'network_id' => $config->get('network-identifier'),
@@ -44,11 +35,30 @@ class SolrSearch
     ));
 
     $acquiaServices = Services::ACQUIA_SEARCH;
-
     $subscription = $network->checkSubscription($acquiaServices);
 
-    $class = new static($subscription, $config->get('network-identifier'));
+    $this->_search = AcquiaSearchService::factory($subscription);
 
-    return $class->select($argv[1]);
+    $this->_index = $this->_search->get($config->get('network-identifier'));
+  }
+
+  /**
+   * Runs a simple search against the selected solr instance
+   *
+   * @returns array
+   */
+  public function select()
+  {
+    return $this->_index->select($this->_argv[1]);
+  }
+
+  /**
+   * Alias for ->select()
+   *
+   * @returns array
+   */
+  public function run()
+  {
+    return $this->select();
   }
 }
