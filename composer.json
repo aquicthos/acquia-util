@@ -6,6 +6,7 @@
         }
     ],
     "require": {
-        "acquia/acquia-sdk-php": "*"
+        "acquia/acquia-sdk-php": "*",
+        "wp-cli/php-cli-tools" : "v0.9.4-patch46"
     }
 }

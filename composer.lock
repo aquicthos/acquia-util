@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6301f8a8c85be6b765761729d6b3d1d0",
+    "hash": "e5225cc5af2e382bf79f2224b076dcb6",
     "packages": [
         {
             "name": "acquia/acquia-sdk-php",
-            "version": "0.9.0",
+            "version": "0.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/acquia-sdk-php.git",
-                "reference": "5e661b5a4f9f0940c0443fc598f9c16684da4e92"
+                "reference": "e0815a01ffc400728972d01073c1c119984c14f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/acquia-sdk-php/zipball/5e661b5a4f9f0940c0443fc598f9c16684da4e92",
-                "reference": "5e661b5a4f9f0940c0443fc598f9c16684da4e92",
+                "url": "https://api.github.com/repos/acquia/acquia-sdk-php/zipball/e0815a01ffc400728972d01073c1c119984c14f4",
+                "reference": "e0815a01ffc400728972d01073c1c119984c14f4",
                 "shasum": ""
             },
             "require": {
@@ -31,6 +31,7 @@
                 "acquia/acquia-sdk-php-cloud-api": "self.version",
                 "acquia/acquia-sdk-php-cloud-db": "self.version",
                 "acquia/acquia-sdk-php-cloud-env": "self.version",
+                "acquia/acquia-sdk-php-cloud-memcache": "self.version",
                 "acquia/acquia-sdk-php-common": "self.version",
                 "acquia/acquia-sdk-php-env": "self.version",
                 "acquia/acquia-sdk-php-json": "self.version",
@@ -68,7 +69,7 @@
             "keywords": [
                 "acquia"
             ],
-            "time": "2014-03-08 02:26:42"
+            "time": "2014-04-02 20:43:04"
         },
         {
             "name": "cpliakas/psolr",
@@ -563,7 +564,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
@@ -619,17 +620,17 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "7e65abb06d3b38f4be89266fe3fb4a759544e713"
+                "reference": "b717952487176a993e9b12a08b87beae25ae419c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/7e65abb06d3b38f4be89266fe3fb4a759544e713",
-                "reference": "7e65abb06d3b38f4be89266fe3fb4a759544e713",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/b717952487176a993e9b12a08b87beae25ae419c",
+                "reference": "b717952487176a993e9b12a08b87beae25ae419c",
                 "shasum": ""
             },
             "require": {
@@ -664,7 +665,52 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2014-01-07 13:28:54"
+            "time": "2014-03-26 11:55:03"
+        },
+        {
+            "name": "wp-cli/php-cli-tools",
+            "version": "v0.9.4-patch46",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wp-cli/php-cli-tools.git",
+                "reference": "02d5ed4cdbab911df91bf06062c8b2705fb0919a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wp-cli/php-cli-tools/zipball/02d5ed4cdbab911df91bf06062c8b2705fb0919a",
+                "reference": "02d5ed4cdbab911df91bf06062c8b2705fb0919a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "cli": "lib/"
+                },
+                "files": [
+                    "lib/cli/cli.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Logsdon",
+                    "email": "jlogsdon@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Console utilities for PHP",
+            "homepage": "http://github.com/jlogsdon/php-cli-tools",
+            "keywords": [
+                "cli",
+                "console"
+            ],
+            "time": "2014-02-01 23:11:00"
         }
     ],
     "packages-dev": [

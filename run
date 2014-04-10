@@ -23,10 +23,10 @@ if (!class_exists($class)) {
 
 $class = call_user_func($class . '::factory', $params);
 
-// TODO: Nicely formatted output? (Composer package?)
+// TODO: Allow command class to handle the "output" in pretty formats.
 try {
   $result = $class->{$command[1]}();
-  var_dump($result);
+  \cli\out(print_r($result, true));
 } catch (\Exception $e) {
   var_dump($e->getMessage());
 }

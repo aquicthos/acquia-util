@@ -39,7 +39,7 @@ class SolrSearch extends \AcquiaUtil\Base\Command
 
     $this->_search = AcquiaSearchService::factory($subscription);
 
-    $this->_index = $this->_search->get($config->get('network-identifier'));
+    $this->_index = $this->_search->get($config->get('search-identifier'));
   }
 
   /**
@@ -50,6 +50,16 @@ class SolrSearch extends \AcquiaUtil\Base\Command
   public function select()
   {
     return $this->_index->select($this->_argv[1]);
+  }
+
+  /**
+   * Allows you to search on a single facet.
+   *
+   * @returns array
+   */
+  public function facetSearch()
+  {
+    return $this->_index->select(array('q' => "{$this->_argv[1]}:{$this->_argv[2]}"));
   }
 
   /**
