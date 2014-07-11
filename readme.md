@@ -4,6 +4,14 @@ This is something I've hacked together in 30 minutes so I could do ad-hoc search
 
 It's by no means clean or awesome yet. But maybe it could be.
 
+## Installation
+
+Make sure you install [composer](https://getcomposer.org/download/) first and then run:
+
+```
+composer install
+```
+
 ## Usage
 
 There are a couple of steps you'll need to do in order to get this working.
