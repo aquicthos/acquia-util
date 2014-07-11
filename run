@@ -26,7 +26,7 @@ $class = call_user_func($class . '::factory', $params);
 // TODO: Allow command class to handle the "output" in pretty formats.
 try {
   $result = $class->{$command[1]}();
-  \cli\out(print_r($result, true));
+  print_r($result, true);
 } catch (\Exception $e) {
   var_dump($e->getMessage());
 }
