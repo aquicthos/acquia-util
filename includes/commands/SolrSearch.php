@@ -17,6 +17,8 @@ class SolrSearch extends \AcquiaUtil\Base\Command
 
   protected $_index;
 
+  protected $_config;
+
   /**
    * Overloaded constructor to setup commands
    *
@@ -27,11 +29,15 @@ class SolrSearch extends \AcquiaUtil\Base\Command
   public function __construct($argv)
   {
     parent::__construct($argv);
-    $config = \AcquiaUtil\Base\Config::instance($this->_argv[0]);
+    $this->_config = \AcquiaUtil\Base\Config::instance($this->_argv[0]);
+
+    if (!$network_identifier = $this->_config->get('network-identifier')) {
+      $this->promptForConfig();
+    }
 
     $network = AcquiaNetworkClient::factory(array(
-        'network_id' => $config->get('network-identifier'),
-        'network_key' => $config->get('network-key'),
+        'network_id' => $this->_config->get('network-identifier'),
+        'network_key' => $this->_config->get('network-key'),
     ));
 
     $acquiaServices = Services::ACQUIA_SEARCH;
@@ -39,7 +45,23 @@ class SolrSearch extends \AcquiaUtil\Base\Command
 
     $this->_search = AcquiaSearchService::factory($subscription);
 
-    $this->_index = $this->_search->get($config->get('search-identifier'));
+    $this->_index = $this->_search->get($this->_config->get('search-identifier'));
+  }
+
+  /**
+   * Asks for any missing config variables and saves them.
+   */
+  public function promptForConfig()
+  {
+    $network_identifier = \cli\prompt('Enter the network identifier');
+    $network_key = \cli\prompt('Enter the network key');
+    $search_identifier = \cli\prompt('Enter the search identifier (probably same as network identifier)');
+
+    $this->_config->set('network-identifier', $network_identifier);
+    $this->_config->set('network-key', $network_key);
+    $this->_config->set('search-identifier', $search_identifier);
+
+    $this->_config->save();
   }
 
   /**

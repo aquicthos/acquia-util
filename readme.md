@@ -17,7 +17,13 @@ composer install
 There are a couple of steps you'll need to do in order to get this working.
 
 1. The script tries to create a ```~/.acquia-util``` folder where it can hold configuration files. Creating this ahead of time would be a good idea.
-2. The script has you pass a config string so it knows what search index to use. It's simply named whatever you're checking. You'll want a .php file named the same thing in the ```~/.acquia-util``` folder. For example ```~/.acquia-util/llama.php``` would be the llama instance. Structure of this file is below.
+2. The script has you pass a config string so it knows what search index to use. As of the latest version, SolrSearch will ask you for the information it needs if it does not find the configuration file.
+
+### Config file
+As of the latest version the configuration file is a json file.
+
+You'll need to look up the API keys from your acquia hosting page before searching, as SolrSearch will ask for the configuration information it needs before it produces its first search results.
+
 
 ### Usage example
 A couple of commands are supported, but the simplest usage is to search on a string:
@@ -31,22 +37,6 @@ It also supports facet searching like so:
 ```./run SolrSearch::facetSearch llama tm_vid_9_names 'Security'```
 
 The parameters are search index identifier, facet name, and search string.
-
-### Structure of config file
-It's simply a php file, structured in an array. This will change eventually, but I needed something quick and dirty.
-
-You'll need to look up the API key from your acquia hosting page.
-
-```php
-<?php
-
-$config = array(
-  'network-identifier' => 'IKRY-XXXXX',
-  'search-identifier'  => 'IKRY-XXXXX',
-  'network-key'        => 'SUPERSECRETHASHKEY',
-);
-
-```
 
 ### Todo:
 * Save search index config locally.
